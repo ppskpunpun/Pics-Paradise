@@ -11,7 +11,7 @@ export default function NavigationBar() {
                     <span>Pics Paradise</span>
                 </Link>
             </div>
-            <SearchBar />
+            <SearchBar styleFor="navbar" />
             <a className="view-source-link" href="#will-replace-with-github-repository-link">View Source</a>
         </nav>
     )
