@@ -196,4 +196,10 @@ nav {
     border-radius: 2px;
     object-fit: cover;
     object-position: center;
+    transition: .3s ease;
+}
+
+.pics-column img:hover {
+    cursor: zoom-in;
+    filter: brightness(.7);
 }
