@@ -11,7 +11,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path=":search" element={<Gallery />} />
+          <Route path="/search/:query" element={<Gallery />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
