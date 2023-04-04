@@ -5,6 +5,7 @@ import searchIcon from '../assets/search-icon.svg'
 export default function SearchBar({styleFor}: {styleFor: string}) {
 
     const [search, setSearch] = useState('')
+    const [isFocus, setIsFocus] = useState(false)
     const navigate = useNavigate()
     
     let searchBarClass
@@ -18,12 +19,15 @@ export default function SearchBar({styleFor}: {styleFor: string}) {
         navigate(`/${formatSearch(search)}`)
         e.preventDefault()
     }
+
     return (
-        <div className={searchBarClass + '-wrapper'}>
-            <form className={searchBarClass} onSubmit={e => handleSubmit(e)}>
+        <div className={searchBarClass + '-wrapper'} >
+            <form className={`${searchBarClass} ${isFocus ? 'box-shadow' : ''}`} onSubmit={e => handleSubmit(e)}>
                 <input type="text" 
                     placeholder="Search to explore pictures" 
-                    onChange={e => {setSearch(e.target.value)}} 
+                    onChange={e => {setSearch(e.target.value)}}
+                    onFocus={() => setIsFocus(true)}
+                    onBlur={() => setIsFocus(false)}
                 />
                 <button type="submit">
                     <img src={searchIcon} alt="search-icon" width="30" />
