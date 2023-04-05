@@ -16,7 +16,7 @@ export default function SearchBar({styleFor}: {styleFor: string}) {
     }
 
     function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-        navigate(`/${formatSearch(search)}`)
+        navigate(`search/${formatSearch(search)}`)
         e.preventDefault()
     }
 
