@@ -1,13 +1,10 @@
-interface pictureObj {
-    url: string,
-    title: string,
-}
+import { imageData } from './formatUnsplashResult'
 
-export default function PicsColumn({ pictures }: { pictures: Array<pictureObj> }) {
+export default function PicsColumn({ images }: { images: Array<imageData> }) {
     return (
         <div className="pics-column">
-            {pictures.map((picture, index) => {
-                return <img key={index + picture.title} src={picture.url} alt={picture.title} />
+            {images.map((image, index) => {
+                return <img key={index + image.title} src={image.url} alt={image.title} />
             })}
         </div>
     )
