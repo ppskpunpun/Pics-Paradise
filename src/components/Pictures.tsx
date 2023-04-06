@@ -7,14 +7,14 @@ export default function Pictures({ search='' }) {
 
     const [page, setPage] = useState(1)
 
-    // const url = search != '' ? 
-    //     `https://api.unsplash.com/search/photos/?client_id=${import.meta.env.VITE_UNSPLASH_ACCESS_KEY}&query=${search}&page=${page}&per_page=30` 
-    //     : `https://api.unsplash.com/photos/random/?client_id=${import.meta.env.VITE_UNSPLASH_ACCESS_KEY}&count=30`
+    const url = search != '' ? 
+        `https://api.unsplash.com/search/photos/?client_id=${import.meta.env.VITE_UNSPLASH_ACCESS_KEY}&query=${search}&page=${page}&per_page=30` 
+        : `https://api.unsplash.com/photos/random/?client_id=${import.meta.env.VITE_UNSPLASH_ACCESS_KEY}&count=30`
 
     // placeholder API
-    const url = search != '' ?
-        'https://worrisome-baseball-cap-hare.cyclic.app/api/unsplash/placeholder/tokyo'
-        : 'https://worrisome-baseball-cap-hare.cyclic.app/api/unsplash/placeholder/random'
+    // const url = search != '' ?
+    //     'https://worrisome-baseball-cap-hare.cyclic.app/api/unsplash/placeholder/tokyo'
+    //     : 'https://worrisome-baseball-cap-hare.cyclic.app/api/unsplash/placeholder/random'
 
     const { isLoading, data, error } = useFetch(url)
 
