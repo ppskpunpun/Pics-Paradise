@@ -7,6 +7,7 @@ export default function Gallery() {
 
     return (
         <main>
+            <h1 className="search-title">{query}</h1>
             <Pictures search={query} />
         </main>
     )

@@ -1,8 +1,11 @@
+import { useState } from 'react'
 import useFetch from '../hooks/useFetch'
 import PicsColumn from './PicsColumn'
 import { imageData, formatUnsplashResult } from './formatUnsplashResult'
 
-export default function Pictures({ search='', page=1 }) {
+export default function Pictures({ search='' }) {
+
+    const [page, setPage] = useState(1)
 
     // const url = search != '' ? 
     //     `https://api.unsplash.com/search/photos/?client_id=${import.meta.env.VITE_UNSPLASH_ACCESS_KEY}&query=${search}&page=${page}&per_page=30` 
@@ -12,7 +15,7 @@ export default function Pictures({ search='', page=1 }) {
     const url = search != '' ?
         'https://worrisome-baseball-cap-hare.cyclic.app/api/unsplash/placeholder/tokyo'
         : 'https://worrisome-baseball-cap-hare.cyclic.app/api/unsplash/placeholder/random'
-    
+
     const { isLoading, data, error } = useFetch(url)
 
     let imagesData: imageData[] = [{url: '', title: '', description: ''}] // define initial value to prevent error

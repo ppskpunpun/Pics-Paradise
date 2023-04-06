@@ -205,3 +205,11 @@ nav {
     cursor: zoom-in;
     filter: brightness(.7);
 }
+
+.search-title {
+    padding: 1rem;
+    font-size: 3rem;
+    text-align: center;
+    text-shadow: 0 0 5px var(--light-yellow);
+    color: #fff;
+}
