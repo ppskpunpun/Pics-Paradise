@@ -18,7 +18,7 @@ export default function Pictures({ search='' }) {
 
     const { isLoading, data, error } = useFetch(url)
 
-    let imagesData: imageData[] = [{url: '', title: '', description: ''}] // define initial value to prevent error
+    let imagesData: imageData[] = []
 
     if (data) {
         imagesData = search != ''
