@@ -1,4 +1,5 @@
 # Todo
 
-- view image function
+- loading page
+- error page
 - responsive design
