@@ -283,7 +283,8 @@ nav {
 }
 
 .img-wrapper img {
-    max-height: 768px;
+    max-height: 90vh;
+    max-width: 90%;
     box-shadow: 0 0 10px 20px var(--very-dark-blue);
     border: 1px solid var(--light-blue);
 }
@@ -298,11 +299,17 @@ nav {
     border-radius: 24px 4px 0 0;
 }
 
+.pic-info > * {
+    flex: 1;
+    max-height: 30px;
+}
+
 .pic-info span {
     color: var(--light-blue);
 }
 
 .pic-info a {
+    text-align: center;
     color: #fff;
 }
 
@@ -310,7 +317,16 @@ nav {
     color: var(--yellow);
 }
 
+.download-btn-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
 .download-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: .25rem;
     aspect-ratio: 1/1;
     background-color: var(--light-yellow);

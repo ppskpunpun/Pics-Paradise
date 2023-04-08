@@ -25,7 +25,7 @@ export function formatUnsplashResult(result: any) {
         description: result.alt_description,
         links: {
             html: result.links.html,
-            download: result.links.download,
+            download: result.urls.full,
         },
         user: {
             name: result.user.name,
