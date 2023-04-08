@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import useFetch from '../hooks/useFetch'
 import PicsColumn from './PicsColumn'
 import { imageData, formatUnsplashResult } from './formatUnsplashResult'
 
@@ -7,47 +6,79 @@ export default function Pictures({ search='' }) {
 
     const [page, setPage] = useState(1)
 
-    // const url = search != '' ? 
-    //     `https://api.unsplash.com/search/photos/?client_id=${import.meta.env.VITE_UNSPLASH_ACCESS_KEY}&query=${search}&page=${page}&per_page=30` 
-    //     : `https://api.unsplash.com/photos/random/?client_id=${import.meta.env.VITE_UNSPLASH_ACCESS_KEY}&count=30`
+    function api(isAPI=true) {
+        let url
+        if (isAPI) {
+            url = search != '' ? 
+                `https://api.unsplash.com/search/photos/?client_id=${import.meta.env.VITE_UNSPLASH_ACCESS_KEY}&query=${search}&page=${page}&per_page=30` 
+                : `https://api.unsplash.com/photos/random/?client_id=${import.meta.env.VITE_UNSPLASH_ACCESS_KEY}&count=30`
+        } else {
+            // placeholder API
+            url = search != '' ?
+                'https://worrisome-baseball-cap-hare.cyclic.app/api/unsplash/placeholder/tokyo'
+                : 'https://worrisome-baseball-cap-hare.cyclic.app/api/unsplash/placeholder/random'
+        }
+        return url
+    }
 
-    // placeholder API
-    const url = search != '' ?
-        'https://worrisome-baseball-cap-hare.cyclic.app/api/unsplash/placeholder/tokyo'
-        : 'https://worrisome-baseball-cap-hare.cyclic.app/api/unsplash/placeholder/random'
+    const url = api(true)
 
-    const { isLoading, data, error } = useFetch(url)
+    const [isLoading, setIsLoading] = useState(false)
+    const [data, setData] = useState<Array<any>>([])
+    const [error, setError] = useState<any>()
+
+    function formatData(data: any) {
+        let imagesData: imageData[] = []
     
-    if (isLoading) return <div>Loading...</div>
+        imagesData = search != ''
+        ? data.results.map((result: any): imageData => {
+            return formatUnsplashResult(result)
+        })
+        : data.map((result: any): imageData => {
+            return formatUnsplashResult(result)
+        })
+    
+        return imagesData
+    }
+
+    useEffect(() => {
+        setIsLoading(true)
+        fetch(url)
+        .then(res => {
+            return res.json()
+        })
+        .then(jsonData => {
+            let newData = formatData(jsonData)
+            setData(data ? [...data, ...newData] : newData) 
+        })
+        .catch(err => {
+            console.log(err)
+            setError(err)
+        })
+        .finally(() => {
+            setIsLoading(false)
+        })
+    }, [page])
 
     if (error) return <div>Opps! something went wrong.</div>
 
-    if (data) {
-        return (
-            <section className="pictures-section">
+    return (
+        <>
+            {
+                data && 
+                <section className="pictures-section">
                 {
-                    countingOffSepArray(formatData(data, search != ''), 3)
+                    countingOffSepArray(data, 3)
                     .map((images: imageData[], index) => {
                         return <PicsColumn key={index + 'picscolumn'} images={images} />
                     })
                 }
-            </section>
-        )
-    }
-}
-
-function formatData(data: any, isSearch: boolean) {
-    let imagesData: imageData[] = []
-
-    imagesData = isSearch
-    ? data.results.map((result: any): imageData => {
-        return formatUnsplashResult(result)
-    })
-    : data.map((result: any): imageData => {
-        return formatUnsplashResult(result)
-    })
-
-    return imagesData
+                </section>
+            }
+            <button onClick={() => setPage(page + 1)}>Load more</button>
+            {isLoading && <div>Loading...</div>}
+        </>
+    )
 }
 
 function countingOffSepArray(arr: Array<any>, countTo: number) {
