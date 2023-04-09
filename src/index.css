@@ -447,13 +447,10 @@ nav {
     background-color: var(--light-yellow);
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 845px) {
     .pictures-section {
         grid-template-columns: repeat(2, 1fr);
     }
-}
-
-@media (max-width: 845px) {
     .logo span {
         font-size: 1.2rem;
     }

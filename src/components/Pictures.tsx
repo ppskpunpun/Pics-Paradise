@@ -24,12 +24,12 @@ export default function Pictures({ search='' }) {
     }
 
     useLayoutEffect(() => {
-        setColumns(screen.width <= 1024 ? 2 : 3)
+        setColumns(screen.width <= 845 ? 2 : 3)
     }, [])
 
     useEffect(() => {
         window.addEventListener('resize', () => {
-            setColumns(screen.width <= 1024 ? 2 : 3)
+            setColumns(screen.width <= 845 ? 2 : 3)
         })
     }, [])
 
