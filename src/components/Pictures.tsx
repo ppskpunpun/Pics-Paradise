@@ -22,22 +22,9 @@ export default function Pictures({ search='' }) {
     }, [])
 
 
-    function api(isAPI=true) {
-        let url
-        if (isAPI) {
-            url = search != '' ? 
-                `https://api.unsplash.com/search/photos/?client_id=${import.meta.env.VITE_UNSPLASH_ACCESS_KEY}&query=${search}&page=${page}&per_page=30` 
-                : `https://api.unsplash.com/photos/random/?client_id=${import.meta.env.VITE_UNSPLASH_ACCESS_KEY}&count=30`
-        } else {
-            // placeholder API
-            url = search != '' ?
-                'https://worrisome-baseball-cap-hare.cyclic.app/api/unsplash/placeholder/tokyo'
-                : 'https://worrisome-baseball-cap-hare.cyclic.app/api/unsplash/placeholder/random'
-        }
-        return url
-    }
-
-    const url = api(true)
+    const url = search != '' ? 
+        `https://api.unsplash.com/search/photos/?client_id=${import.meta.env.VITE_UNSPLASH_ACCESS_KEY}&query=${search}&page=${page}&per_page=30` 
+        : `https://api.unsplash.com/photos/random/?client_id=${import.meta.env.VITE_UNSPLASH_ACCESS_KEY}&count=30`
 
     const [isLoading, setIsLoading] = useState(false)
     const [data, setData] = useState<any>()

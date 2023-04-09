@@ -456,14 +456,11 @@ nav {
     }
     .hero-section {
         height: 420px;
+        padding: 2rem;
     }
 }
 
 @media (max-width: 768px) {
-    .hero-section {
-        padding: 2rem;
-    }
-
     .pictures-section {
         display: flex;
         flex-direction: column;
@@ -500,6 +497,10 @@ nav {
         font-size: 2rem;
     }
 
+    .suggest-search-wrapper {
+        display: none;
+    }
+
     .pictures-section {
         padding: .5rem;
     }
@@ -510,6 +511,9 @@ nav {
 }
 
 @media (max-width: 470px) {
+    .hero-section {
+        height: 250px;
+    }
     .hero-section-inner h1 {
         font-size: 1.25rem;
     }
@@ -518,8 +522,5 @@ nav {
 @media (max-width: 380px) {
     .hero-search-bar input {
         font-size: .8rem;
-    }
-    .suggest-search a {
-        font-size: .75rem;
     }
 }
