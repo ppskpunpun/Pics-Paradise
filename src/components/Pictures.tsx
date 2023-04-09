@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import Loader from './Loader'
 import PicsColumn from './PicsColumn'
 import { imageData, formatUnsplashResult } from './formatUnsplashResult'
 
@@ -21,10 +22,10 @@ export default function Pictures({ search='' }) {
         return url
     }
 
-    const url = api(true)
+    const url = api(false)
 
     const [isLoading, setIsLoading] = useState(false)
-    const [data, setData] = useState<Array<any>>([])
+    const [data, setData] = useState<any>()
     const [error, setError] = useState<any>()
 
     function formatData(data: any) {
@@ -43,21 +44,23 @@ export default function Pictures({ search='' }) {
 
     useEffect(() => {
         setIsLoading(true)
-        fetch(url)
-        .then(res => {
-            return res.json()
-        })
-        .then(jsonData => {
-            let newData = formatData(jsonData)
-            setData(data ? [...data, ...newData] : newData) 
-        })
-        .catch(err => {
-            console.log(err)
-            setError(err)
-        })
-        .finally(() => {
-            setIsLoading(false)
-        })
+        setTimeout(() => {
+            fetch(url)
+            .then(res => {
+                return res.json()
+            })
+            .then(jsonData => {
+                let newData = formatData(jsonData)
+                setData(data ? [...data, ...newData] : newData) 
+            })
+            .catch(err => {
+                console.log(err)
+                setError(err)
+            })
+            .finally(() => {
+                setIsLoading(false)
+            })
+        }, 1000)
     }, [page])
 
     if (error) return <div>Opps! something went wrong.</div>
@@ -75,8 +78,18 @@ export default function Pictures({ search='' }) {
                 }
                 </section>
             }
-            <button onClick={() => setPage(page + 1)}>Load more</button>
-            {isLoading && <div>Loading...</div>}
+            {(data && !isLoading) 
+                && <button onClick={() => {
+                    setPage(page + 1)
+                    setTimeout(() => {
+                        window.scrollTo({
+                            top: document.documentElement.scrollHeight,
+                            behavior: 'smooth'
+                        })
+                    }, 250)
+                }}>Load more</button>
+            }
+            {isLoading && <Loader />}
         </>
     )
 }

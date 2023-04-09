@@ -14,6 +14,10 @@
     font-family: 'Quando', serif;
 }
 
+body {
+    background-color: var(--very-dark-blue);
+}
+
 .App {
     background-color: var(--very-dark-blue);
     min-height: 100vh;
@@ -359,3 +363,21 @@ nav {
     background-color: var(--yellow);
 }
 
+.loader {
+    width: 48px;
+    aspect-ratio: 1/1;
+    margin: 2rem auto;
+    border: 8px solid var(--light-blue);
+    border-top: 5px solid rgba(244, 244, 244, .2);
+    border-radius: 50%;
+    animation: 1s loading linear infinite;
+}
+
+@keyframes loading {
+    from {
+        transform: rotateZ(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
