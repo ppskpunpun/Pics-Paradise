@@ -421,3 +421,22 @@ nav {
     color: var(--dark-blue);
     background-color: var(--light-blue);
 }
+
+.load-more-wrapper {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1rem;
+}
+
+.load-more {
+    padding: .25rem;
+    font-size: 1.1rem;
+    background-color: #fff;
+    border: none;
+    transition: .25s ease;
+}
+
+.load-more:hover {
+    cursor: pointer;
+    background-color: var(--light-yellow);
+}

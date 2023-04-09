@@ -63,7 +63,16 @@ export default function Pictures({ search='' }) {
         }, 1000)
     }, [page])
 
-    if (error) return <div>Opps! something went wrong.</div>
+    if (error) {
+        return (
+        <div style={{fontSize: '1.1rem', color: '#fff', textAlign: 'center', padding: '1rem'}}>
+            Opps! something went wrong.
+            <div style={{fontSize: '1rem', marginTop: '2rem'}}>
+                {`${error}`}
+            </div>
+        </div>
+        )
+    }
 
     return (
         <>
@@ -78,16 +87,18 @@ export default function Pictures({ search='' }) {
                 }
                 </section>
             }
-            {(data && !isLoading) 
-                && <button onClick={() => {
-                    setPage(page + 1)
-                    setTimeout(() => {
-                        window.scrollTo({
-                            top: document.documentElement.scrollHeight,
-                            behavior: 'smooth'
-                        })
-                    }, 250)
-                }}>Load more</button>
+            {(data && !isLoading) && 
+                <div className='load-more-wrapper'>
+                    <button className="load-more" onClick={() => {
+                        setPage(page + 1)
+                        setTimeout(() => {
+                            window.scrollTo({
+                                top: document.documentElement.scrollHeight,
+                                behavior: 'smooth'
+                            })
+                        }, 150)
+                    }}>Load more</button>
+                </div>
             }
             {isLoading && <Loader />}
         </>
