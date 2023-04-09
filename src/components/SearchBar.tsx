@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import searchIcon from '../assets/search-icon.svg'
+import closeIcon from '../assets/close-icon.svg'
 
 export default function SearchBar({styleFor}: {styleFor: string}) {
 
@@ -23,6 +24,9 @@ export default function SearchBar({styleFor}: {styleFor: string}) {
     return (
         <div className={searchBarClass + '-wrapper'} >
             <form className={`${searchBarClass} ${isFocus ? 'box-shadow' : ''}`} onSubmit={e => handleSubmit(e)}>
+                <button type="reset">
+                    <img src={closeIcon} alt="clear-search-icon" width="12" />
+                </button>
                 <input type="text" 
                     placeholder="Search to explore pictures" 
                     onChange={e => {setSearch(e.target.value)}}

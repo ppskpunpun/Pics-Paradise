@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useLayoutEffect } from 'react'
 import Loader from './Loader'
 import PicsColumn from './PicsColumn'
 import { imageData, formatUnsplashResult } from './formatUnsplashResult'
@@ -22,7 +22,7 @@ export default function Pictures({ search='' }) {
         return url
     }
 
-    const url = api(false)
+    const url = api(true)
 
     const [isLoading, setIsLoading] = useState(false)
     const [data, setData] = useState<any>()
