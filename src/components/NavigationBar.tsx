@@ -12,7 +12,7 @@ export default function NavigationBar() {
                 </Link>
             </div>
             <SearchBar styleFor="navbar" />
-            <a className="view-source-link" href="#will-replace-with-github-repository-link">View Source</a>
+            <a className="view-source-link" href="https://github.com/PPSK2550/Pics-Paradise" target="_blank">View Source</a>
         </nav>
     )
 }

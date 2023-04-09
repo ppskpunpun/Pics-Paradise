@@ -6,6 +6,7 @@ import { imageData, formatUnsplashResult } from './formatUnsplashResult'
 export default function Pictures({ search='' }) {
 
     const [page, setPage] = useState(1)
+    const [columns, setColumns] = useState(3)
 
     function api(isAPI=true) {
         let url
@@ -21,6 +22,16 @@ export default function Pictures({ search='' }) {
         }
         return url
     }
+
+    useLayoutEffect(() => {
+        setColumns(screen.width <= 1024 ? 2 : 3)
+    }, [])
+
+    useEffect(() => {
+        window.addEventListener('resize', () => {
+            setColumns(screen.width <= 1024 ? 2 : 3)
+        })
+    }, [])
 
     const url = api(true)
 
@@ -80,7 +91,7 @@ export default function Pictures({ search='' }) {
                 data && 
                 <section className="pictures-section">
                 {
-                    countingOffSepArray(data, 3)
+                    countingOffSepArray(data, columns)
                     .map((images: imageData[], index) => {
                         return <PicsColumn key={index + 'picscolumn'} images={images} />
                     })

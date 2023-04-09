@@ -29,8 +29,7 @@ export default function Pic({ image }: { image: imageData }) {
 
     return (
         <div className="picture-card">
-
-            <img ref={ref} src={image.url} alt={image.title} {...onMouseEvents} style={showDetail ? {filter: 'brightness(.65)'} : {} }
+            <img ref={ref} src={image.cover} alt={image.title} {...onMouseEvents} style={showDetail ? {filter: 'brightness(.65)'} : {} }
                 onClick={() => setShowPopUp(true)}
             />
             

@@ -2,6 +2,7 @@ export interface imageData {
     width: number,
     height: number,
     url: string,
+    cover: string, 
     title: string,
     description: string,
     links: {
@@ -21,6 +22,7 @@ export function formatUnsplashResult(result: any) {
         width: result.width,
         height: result.height,
         url: result.urls.raw,
+        cover: result.urls.small,  
         title: result.description,
         description: result.alt_description,
         links: {
