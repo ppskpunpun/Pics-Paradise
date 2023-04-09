@@ -8,7 +8,7 @@ export default function Hero() {
                 <h1>Discover the power of visual storytelling with our image gallery</h1>
                 <SearchBar styleFor="hero" />
                 <div className="suggest-search-wrapper">
-                    {['space', 'nature', 'girl', 'anime', 'dog'].map((search, index) => {
+                    {['space', 'nature', 'paradise', 'anime', 'dog'].map((search, index) => {
                         return <SuggestSearch key={index + search} keyword={search} />
                     })}
                 </div>

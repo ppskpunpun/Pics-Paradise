@@ -21,7 +21,7 @@ export function formatUnsplashResult(result: any) {
     const format: imageData = {
         width: result.width,
         height: result.height,
-        url: result.urls.raw,
+        url: result.urls.regular,
         cover: result.urls.small,  
         title: result.description,
         description: result.alt_description,

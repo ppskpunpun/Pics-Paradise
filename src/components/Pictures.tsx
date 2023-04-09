@@ -7,6 +7,20 @@ export default function Pictures({ search='' }) {
 
     const [page, setPage] = useState(1)
     const [columns, setColumns] = useState(3)
+    const columnsBreakpoint = 845
+
+    function reColumnsCheck() {
+        setColumns(window.innerWidth <= columnsBreakpoint ? 2 : 3)
+    }
+
+    useLayoutEffect(() => {
+        reColumnsCheck()
+    }, [])
+
+    useEffect(() => {
+        window.addEventListener('resize', reColumnsCheck)
+    }, [])
+
 
     function api(isAPI=true) {
         let url
@@ -22,16 +36,6 @@ export default function Pictures({ search='' }) {
         }
         return url
     }
-
-    useLayoutEffect(() => {
-        setColumns(screen.width <= 845 ? 2 : 3)
-    }, [])
-
-    useEffect(() => {
-        window.addEventListener('resize', () => {
-            setColumns(screen.width <= 845 ? 2 : 3)
-        })
-    }, [])
 
     const url = api(true)
 
