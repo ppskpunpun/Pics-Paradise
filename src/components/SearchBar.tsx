@@ -18,7 +18,6 @@ export default function SearchBar({styleFor}: {styleFor: string}) {
 
     function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         navigate(`search/${formatSearch(search)}`)
-        e.preventDefault()
     }
 
     return (
