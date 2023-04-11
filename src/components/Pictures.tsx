@@ -21,7 +21,6 @@ export default function Pictures({ search='' }) {
         window.addEventListener('resize', reColumnsCheck)
     }, [])
 
-    console.log(search)
     const url = search != '' ? 
         `https://api.unsplash.com/search/photos/?client_id=${import.meta.env.VITE_UNSPLASH_ACCESS_KEY}&query=${search}&page=${page}&per_page=30` 
         : `https://api.unsplash.com/photos/random/?client_id=${import.meta.env.VITE_UNSPLASH_ACCESS_KEY}&count=30`
@@ -56,6 +55,7 @@ export default function Pictures({ search='' }) {
                 setData(data ? [...data, ...newData] : newData) 
             })
             .catch(err => {
+                console.log(data)
                 console.log(err)
                 setError(err)
             })
@@ -82,7 +82,7 @@ export default function Pictures({ search='' }) {
                 data && 
                 <section className="pictures-section">
                 {
-                    countingOffSepArray(data, columns)
+                    sortImagesIntoColumns(data, columns)
                     .map((images: imageData[], index) => {
                         return <PicsColumn key={index + 'picscolumn'} images={images} />
                     })
@@ -107,16 +107,42 @@ export default function Pictures({ search='' }) {
     )
 }
 
-function countingOffSepArray(arr: Array<any>, countTo: number) {
+function sortImagesIntoColumns(images: Array<imageData>, resultColumns: number) {
 
-    let groupingArray: Array<any> = []
-    for(let i=0; i<countTo; i++) {
-        groupingArray.push([])
+    // Sort images to columns that have roughy same height
+
+    let columns: Array<imageData[]> = [] // result
+    for (let i=0; i<resultColumns; i++) { columns.push([]) }
+
+    for (const image of images) {
+
+        // Get the height of each column
+        let columnsHeightSum: number[] = []
+        columns.forEach(col => {
+            let colHeightSum = 0
+            col.forEach(image => {
+                colHeightSum += (image.height / image.width)
+            })
+            columnsHeightSum.push(colHeightSum)
+            colHeightSum = 0
+        })
+
+        // The index of shortest column
+        const minSumHeightIndex = columnsHeightSum.indexOf(Math.min(...columnsHeightSum))
+        columns[minSumHeightIndex].push(image)
     }
 
-    arr.forEach((item, index) => {
-        groupingArray[index % countTo].push(item)
+    let columnsHeightSum: number[] = []
+    columns.forEach(col => {
+        let colHeightSum = 0
+        col.forEach(image => {
+            colHeightSum += (image.height / image.width)
+        })
+        columnsHeightSum.push(colHeightSum)
+        colHeightSum = 0
     })
-
-    return groupingArray
+        
+    console.log(columnsHeightSum)
+    console.log(columns)
+    return columns
 }
