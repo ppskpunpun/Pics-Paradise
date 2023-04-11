@@ -1,9 +1,11 @@
-import { useState, useEffect, useLayoutEffect } from 'react'
+import { useState, useRef, useEffect, useLayoutEffect } from 'react'
 import Loader from './Loader'
 import PicsColumn from './PicsColumn'
 import { imageData, formatUnsplashResult } from './formatUnsplashResult'
 
 export default function Pictures({ search='' }) {
+
+    const firstSearch = useRef(search)
 
     const [page, setPage] = useState(1)
     const [columns, setColumns] = useState(3)
@@ -29,7 +31,7 @@ export default function Pictures({ search='' }) {
     const [isLoading, setIsLoading] = useState(false)
     const [data, setData] = useState<any>()
     const [error, setError] = useState<any>()
-
+    
     function formatData(data: any) {
         let imagesData: imageData[] = []
     
@@ -53,7 +55,12 @@ export default function Pictures({ search='' }) {
             })
             .then(jsonData => {
                 let newData = formatData(jsonData)
-                setData(data ? [...data, ...newData] : newData) 
+                if (search != firstSearch.current) {
+                    console.log('claer data')
+                    setData(newData)
+                } else {
+                    setData(data ? [...data, ...newData] : newData) 
+                }
             })
             .catch(err => {
                 console.log(data)

@@ -19,11 +19,8 @@ export default function SearchBar({styleFor}: {styleFor: string}) {
     }
 
     function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-        navigate(`search/${formatSearch(search)}`)
-        // Have to reload because of HashRouter
-        // The pictures won't change when continue searching at search/:query
-        window.location.reload() 
-        // e.preventDefault()
+        e.preventDefault()
+        navigate(`/search/${formatSearch(search)}`)
     }
 
     return (
