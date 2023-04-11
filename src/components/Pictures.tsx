@@ -21,6 +21,7 @@ export default function Pictures({ search='' }) {
         window.addEventListener('resize', reColumnsCheck)
     }, [])
 
+    // empthy search consider as random pictures
     const url = search != '' ? 
         `https://api.unsplash.com/search/photos/?client_id=${import.meta.env.VITE_UNSPLASH_ACCESS_KEY}&query=${search}&page=${page}&per_page=30` 
         : `https://api.unsplash.com/photos/random/?client_id=${import.meta.env.VITE_UNSPLASH_ACCESS_KEY}&count=30`
@@ -121,7 +122,7 @@ function sortImagesIntoColumns(images: Array<imageData>, resultColumns: number) 
         columns.forEach(col => {
             let colHeightSum = 0
             col.forEach(image => {
-                colHeightSum += (image.height / image.width)
+                colHeightSum += (image.height / image.width) // ratio height to width of image
             })
             columnsHeightSum.push(colHeightSum)
             colHeightSum = 0
@@ -132,17 +133,5 @@ function sortImagesIntoColumns(images: Array<imageData>, resultColumns: number) 
         columns[minSumHeightIndex].push(image)
     }
 
-    let columnsHeightSum: number[] = []
-    columns.forEach(col => {
-        let colHeightSum = 0
-        col.forEach(image => {
-            colHeightSum += (image.height / image.width)
-        })
-        columnsHeightSum.push(colHeightSum)
-        colHeightSum = 0
-    })
-        
-    console.log(columnsHeightSum)
-    console.log(columns)
     return columns
 }
