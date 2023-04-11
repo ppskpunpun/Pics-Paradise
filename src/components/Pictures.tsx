@@ -21,7 +21,7 @@ export default function Pictures({ search='' }) {
         window.addEventListener('resize', reColumnsCheck)
     }, [])
 
-
+    console.log(search)
     const url = search != '' ? 
         `https://api.unsplash.com/search/photos/?client_id=${import.meta.env.VITE_UNSPLASH_ACCESS_KEY}&query=${search}&page=${page}&per_page=30` 
         : `https://api.unsplash.com/photos/random/?client_id=${import.meta.env.VITE_UNSPLASH_ACCESS_KEY}&count=30`
@@ -63,7 +63,7 @@ export default function Pictures({ search='' }) {
                 setIsLoading(false)
             })
         }, 1000)
-    }, [page])
+    }, [page, url])
 
     if (error) {
         return (
