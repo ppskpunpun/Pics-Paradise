@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+
 import searchIcon from '../assets/search-icon.svg'
 import closeIcon from '../assets/close-icon.svg'
 
@@ -9,6 +10,7 @@ export default function SearchBar({styleFor}: {styleFor: string}) {
     const [isFocus, setIsFocus] = useState(false)
     const navigate = useNavigate()
     
+    // 2 styles
     let searchBarClass
     if (styleFor == 'navbar') {
         searchBarClass = 'nav-search-bar'
@@ -18,7 +20,10 @@ export default function SearchBar({styleFor}: {styleFor: string}) {
 
     function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         navigate(`search/${formatSearch(search)}`)
-        window.location.reload()
+        // Have to reload because of HashRouter
+        // The pictures won't change when continue searching at search/:query
+        window.location.reload() 
+        // e.preventDefault()
     }
 
     return (

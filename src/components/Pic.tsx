@@ -6,7 +6,6 @@ import { imageData } from './formatUnsplashResult'
 
 import closeIcon from '../assets/close-icon.svg'
 
-
 export default function Pic({ image }: { image: imageData }) {
 
     const ref = useRef<any>(null) // image element
