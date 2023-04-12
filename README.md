@@ -8,7 +8,7 @@ This project is a part of my React JS learning
 Clone the project
 
 ```bash
-  https://github.com/ppskpunpun/Pics-Paradise.git
+  git clone https://github.com/ppskpunpun/Pics-Paradise.git
 ```
 
 Go to the project directory
@@ -32,7 +32,7 @@ Start the server
 
 ## Environment Variables
 
-To run this project, you will need to add the following environment variables to your .env file
+To run this project, you will need to add the following environment variable to your .env file
 
 `VITE_UNSPLASH_ACCESS_KEY`
 
@@ -42,3 +42,22 @@ To get your access key go to this site https://unsplash.com/developers
   VITE_UNSPLASH_ACCESS_KEY="Key"
 ```
 
+
+## Appendix
+
+This is my first React JS project.
+
+I have learned a lot while creating this website.
+
+I am very pround of myself, because I didn't give up.
+
+Even though I encountered so many bugs and errors, I alway tried to find solutions to those problems.
+
+
+## Demo
+
+https://ppskpunpun.github.io/Pics-Paradise/
+
+![desktop screenshot](https://github.com/ppskpunpun/Pics-Paradise/blob/media/Images/desktop.png?raw=true)
+
+![mobile screenshot](https://github.com/ppskpunpun/Pics-Paradise/blob/media/Images/mobile.png?raw=true)
