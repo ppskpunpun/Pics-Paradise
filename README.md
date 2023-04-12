@@ -3,6 +3,16 @@
 
 This project is a part of my React JS learning
 
+
+
+## Features
+
+- View many images from Unsplash
+- Search for images
+- Download images using `file-saver` package
+- Responsive
+
+
 ## Run Locally
 
 Clone the project
