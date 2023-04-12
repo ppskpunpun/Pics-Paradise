@@ -61,7 +61,7 @@ I have learned a lot while creating this website.
 
 I am very pround of myself, because I didn't give up.
 
-Even though I encountered so many bugs and errors, I alway tried to find solutions to those problems.
+Even though I encountered so many bugs and errors, I always tried to find solutions to those problems.
 
 
 ## Demo
